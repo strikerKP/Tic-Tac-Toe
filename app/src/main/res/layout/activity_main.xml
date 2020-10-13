@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="2dp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/playerStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="16dp"
+        android:text="Player X  Turn"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/b00"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="0.3"
+        android:textColor="@android:color/black"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@id/b10"
+        app:layout_constraintEnd_toStartOf="@id/b01"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/playerStatus" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/b01"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"
+        android:textColor="@android:color/black"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@id/b00"
+        app:layout_constraintEnd_toStartOf="@id/b02"
+        app:layout_constraintStart_toEndOf="@id/b00"
+        app:layout_constraintTop_toTopOf="@id/b00" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/b02"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_weight="0.3"
+        android:textColor="@android:color/black"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@id/b00"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/b01"
+        app:layout_constraintTop_toTopOf="@id/b00" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/b10"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textColor="@android:color/black"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@id/b20"
+        app:layout_constraintEnd_toEndOf="@id/b00"
+        app:layout_constraintStart_toStartOf="@id/b00"
+        app:layout_constraintTop_toBottomOf="@id/b00" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/b11"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textColor="@android:color/black"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@id/b10"
+        app:layout_constraintEnd_toEndOf="@id/b01"
+        app:layout_constraintStart_toStartOf="@id/b01"
+        app:layout_constraintTop_toTopOf="@id/b10" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/b12"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textColor="@android:color/black"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@id/b10"
+        app:layout_constraintEnd_toEndOf="@id/b02"
+        app:layout_constraintStart_toStartOf="@id/b02"
+        app:layout_constraintTop_toTopOf="@id/b10" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/b20"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        android:layout_weight="1"
+        android:textColor="@android:color/black"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@id/btnReset"
+        app:layout_constraintEnd_toEndOf="@id/b00"
+        app:layout_constraintStart_toStartOf="@id/b00"
+        app:layout_constraintTop_toBottomOf="@id/b10" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/b21"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textColor="@android:color/black"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@id/b20"
+        app:layout_constraintEnd_toEndOf="@id/b01"
+        app:layout_constraintStart_toStartOf="@id/b01"
+        app:layout_constraintTop_toTopOf="@id/b20" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/b22"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textColor="@android:color/black"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@id/b20"
+        app:layout_constraintEnd_toEndOf="@id/b02"
+        app:layout_constraintStart_toStartOf="@id/b02"
+        app:layout_constraintTop_toTopOf="@id/b20" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnReset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:padding="16dp"
+        android:text="@string/reset"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
