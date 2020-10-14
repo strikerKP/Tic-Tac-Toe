@@ -5,4 +5,11 @@
     <string name="start">Start</string>
     <string name="reset">RESET</string>
     <string name="reset_message">Reset Game \n Player X Turn</string>
+    <string name="label_player_one">Player X Turn</string>
+    <string name="label_player_two">Player 0 Turn</string>
+    <string name="win_player_one">Player X Winner</string>
+    <string name="win_player_two">Player 0 Winner</string>
+    <string name="player_move_one">X</string>
+    <string name="player_move_two">0</string>
+    <string name="match_draw_message">Match Draw! Try again</string>
 </resources>

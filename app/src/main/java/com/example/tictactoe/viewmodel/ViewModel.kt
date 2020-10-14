@@ -2,15 +2,20 @@ package com.example.tictactoe.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.tictactoe.extra.Constants
 import com.example.tictactoe.model.PlayerItem
 
 
 class GameViewModel : ViewModel() {
     var boardStatus = Array(3) { IntArray(3) }
-    var updateText = MutableLiveData<Pair<String, Boolean>>()
+    var updateResult = MutableLiveData<Pair<Int, Boolean>>()
     var mSetUserMove = MutableLiveData<PlayerItem>()
 
     var tapCount: Int = 0
+
+    /**
+     * initialize the board when match started or match is reset.
+     */
     fun initializeBoardStatus() {
         for (i in 0..2) {
             for (j in 0..2) {
@@ -19,64 +24,94 @@ class GameViewModel : ViewModel() {
         }
     }
 
-    private fun checkWinner() {
+    /**
+     * This method is used for check the status of match.
+     */
+    private fun checkWinnerStatus() {
+        /**
+         * this loop is used to check vertical wining possibility
+         */
         for (i in 0..2) {
-            if (boardStatus[i][0] == boardStatus[i][1] && boardStatus[i][0] == boardStatus[i][2]) {
-                if (boardStatus[i][0] == 1) {
-                    updateDisplay("Player X Winner", true)
-                    break
-                } else if (boardStatus[i][0] == 0) {
-                    updateDisplay("Player O Winner", true)
-                    break
-                }
-            }
-        }
-        for (i in 0..2) {
-            if (boardStatus[0][i] == boardStatus[1][i] && boardStatus[0][i] == boardStatus[2][i]) {
-                if (boardStatus[0][i] == 1) {
-                    updateDisplay("Player X Winner", true)
-                    break
-                } else if (boardStatus[0][i] == 0) {
-                    updateDisplay("Player O Winner", true)
-                    break
+            if (boardStatus[i][Constants.CELL_ZERO] == boardStatus[i][Constants.CELL_ONE]
+                && boardStatus[i][Constants.CELL_ZERO] == boardStatus[i][Constants.CELL_TWO]
+            ) {
+                when {
+                    boardStatus[i][Constants.CELL_ZERO] == Constants.PLAYER_ONE -> {
+                        resultMessage(Constants.PLAYER_ONE, true)
+                        break
+                    }
+                    boardStatus[i][Constants.CELL_ZERO] == Constants.PLAYER_TWO -> {
+                        resultMessage(Constants.PLAYER_TWO, true)
+                        break
+                    }
                 }
             }
         }
 
-        if (boardStatus[0][0] == boardStatus[1][1] && boardStatus[0][0] == boardStatus[2][2]) {
-            if (boardStatus[0][0] == 1) {
-                updateDisplay("Player X Winner", true)
-            } else if (boardStatus[0][0] == 0) {
-                updateDisplay("Player O Winner", true)
+        /**
+         * this loop is used to check horizontal wining possibility
+         */
+        for (i in 0..2) {
+            if (boardStatus[Constants.CELL_ZERO][i] == boardStatus[Constants.CELL_ONE][i]
+                && boardStatus[Constants.CELL_ZERO][i] == boardStatus[Constants.CELL_TWO][i]
+            ) {
+                when {
+                    boardStatus[Constants.CELL_ZERO][i] == Constants.PLAYER_ONE -> {
+                        resultMessage(Constants.PLAYER_ONE, true)
+                        break
+                    }
+                    boardStatus[Constants.CELL_ZERO][i] == Constants.PLAYER_TWO -> {
+                        resultMessage(Constants.PLAYER_TWO, true)
+                        break
+                    }
+                }
             }
         }
 
-        if (boardStatus[0][2] == boardStatus[1][1] && boardStatus[0][2] == boardStatus[2][0]) {
-            if (boardStatus[0][2] == 1) {
-                updateDisplay("Player X Winner", true)
-            } else if (boardStatus[0][2] == 0) {
-                updateDisplay("Player O Winner", true)
+        /**
+         * This both condition is used to check diagonally wining possibility
+         */
+        if (boardStatus[Constants.CELL_ZERO][Constants.CELL_ZERO] == boardStatus[Constants.CELL_ONE][Constants.CELL_ONE]
+            && boardStatus[Constants.CELL_ZERO][Constants.CELL_ZERO] == boardStatus[Constants.CELL_TWO][Constants.CELL_TWO]
+        ) {
+            when {
+                boardStatus[Constants.CELL_ZERO][Constants.CELL_ZERO] == Constants.PLAYER_ONE ->
+                    resultMessage(Constants.PLAYER_ONE, true)
+                boardStatus[Constants.CELL_ZERO][Constants.CELL_ZERO] == Constants.PLAYER_TWO ->
+                    resultMessage(Constants.PLAYER_TWO, true)
+            }
+        }
+
+        if (boardStatus[Constants.CELL_ZERO][Constants.CELL_TWO] == boardStatus[Constants.CELL_ONE][Constants.CELL_ONE]
+            && boardStatus[Constants.CELL_ZERO][Constants.CELL_TWO] == boardStatus[Constants.CELL_TWO][Constants.CELL_ZERO]
+        ) {
+            when {
+                boardStatus[Constants.CELL_ZERO][Constants.CELL_TWO] == Constants.PLAYER_ONE ->
+                    resultMessage(Constants.PLAYER_ONE, true)
+                boardStatus[Constants.CELL_ZERO][Constants.CELL_TWO] == Constants.PLAYER_TWO ->
+                    resultMessage(Constants.PLAYER_TWO, true)
+
             }
         }
     }
 
-    fun updateValue(row: Int, col: Int, player: Boolean, buttonPosition: Int) {
-        var moveMessage = if (player) "Player X Turn" else "Player O Turn"
-        val move = if (player) "X" else "0"
-        val value = if (player) 1 else 0
-        boardStatus[row][col] = value
-        tapCount++
-        if (tapCount == 9)
-            moveMessage = " Match Draw"
-        mSetUserMove.value = PlayerItem(moveMessage, player.not(), buttonPosition, move)
+    /**
+     * This method is used to update the next move and also update to user.
+     */
+    fun updateUserMove(row: Int, col: Int, player: Boolean, buttonPosition: Int) {
+        boardStatus[row][col] = if (player) Constants.PLAYER_ONE else Constants.PLAYER_TWO
+        mSetUserMove.value = PlayerItem(player, buttonPosition, tapCount++)
 //        mSetUserMove = PlayerItem(moveMessage, player.not(), buttonPosition, move)
-        checkWinner()
+        checkWinnerStatus()
 
     }
 
-    private fun updateDisplay(text: String, isWinner: Boolean = false) {
-        updateText.value = Pair(text, isWinner)
-
+    /**
+     * This method is invoke when any player is win, and reset the board.
+     */
+    private fun resultMessage(player: Int, isWinner: Boolean = false) {
+        tapCount = 0
+        updateResult.value = Pair(player, isWinner)
     }
 
 //    fun getCurrentPlayerData(): PlayerItem {
