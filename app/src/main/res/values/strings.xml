@@ -4,7 +4,7 @@
     <string name="player_two">Player Two</string>
     <string name="start">Start</string>
     <string name="reset">RESET</string>
-    <string name="reset_message">Reset Game \n Player X Turn</string>
+    <string name="reset_message">Reset Game\nPlayer X Turn</string>
     <string name="label_player_one">Player X Turn</string>
     <string name="label_player_two">Player 0 Turn</string>
     <string name="win_player_one">Player X Winner</string>

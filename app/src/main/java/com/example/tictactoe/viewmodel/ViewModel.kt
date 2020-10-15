@@ -101,9 +101,7 @@ class GameViewModel : ViewModel() {
     fun updateUserMove(row: Int, col: Int, player: Boolean, buttonPosition: Int) {
         boardStatus[row][col] = if (player) Constants.PLAYER_ONE else Constants.PLAYER_TWO
         mSetUserMove.value = PlayerItem(player, buttonPosition, tapCount++)
-//        mSetUserMove = PlayerItem(moveMessage, player.not(), buttonPosition, move)
         checkWinnerStatus()
-
     }
 
     /**
@@ -113,8 +111,4 @@ class GameViewModel : ViewModel() {
         tapCount = 0
         updateResult.value = Pair(player, isWinner)
     }
-
-//    fun getCurrentPlayerData(): PlayerItem {
-//        return mSetUserMove
-//    }
 }

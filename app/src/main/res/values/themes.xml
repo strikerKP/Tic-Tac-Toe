@@ -14,11 +14,11 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="CellTextView" parent="Theme.TicTacToe">
-        <item name="android:gravity">center</item>
-        <item name="android:textSize">48sp</item>
-        <item name="android:background">@drawable/border</item>
-        <item name="android:layout_width">50dp</item>
-        <item name="android:textStyle">bold</item>
+    <!-- TTheme used to set cell height, width, textSize, textColor-->
+    <style name="CellTextColorAndSize" parent="Theme.TicTacToe">
+        <item name="android:textSize">@dimen/dimen24sp</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
     </style>
 </resources>
